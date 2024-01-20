@@ -1,26 +1,29 @@
-class invoice {
-    client: string;
-    details: string;
-    amount: number;
-
-    constructor(c: string, d: string a:number) (
-        this.client = c;
-        this.client = d;
-        this.amount = a;
-
-    )
+class Invoice {
+    constructor(
+        readonly client: string,
+        private details: string,
+        public amount: number,
+    ){}
 
     format() {
         return `${this.client} owes N${this.amount} for ${this.details}` 
     }
 }
 
-const invOne = new invoice('mario', 'work on the mario Website', 250);
-const invTwo = new invoice('luigi', 'work on the luigi website', 300)
+const invOne = new Invoice('mario', 'work on the mario Website', 250);
+const invTwo = new Invoice('luigi', 'work on the luigi website', 300);
+
+let invoices: Invoice[] = [];
+invoices.push(invOne);
+invoices.push(invTwo);
+
+invoices.forEach(inv => {
+    console.log(inv.client, inv.amount, inv.format());
+})
 
 
 const form = document.querySelector('.new-item-form') as HTMLFormElement;
-console.log(form.children);
+// console.log(form.children);
 
 const type = document.querySelector('#type') as HTMLSelectElement;
 const tofrom = document.querySelector('#tofrom') as HTMLInputElement;
