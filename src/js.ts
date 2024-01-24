@@ -1,5 +1,6 @@
 import { Invoice } from "./class/Invoice.js";
 import { Payment } from "./class/Payment.js";
+import { ListTemplate } from "./class/ListTemplate.js";
 import { HasFormatter } from "./Interfaces/HasFormatter.js";
 
 // const invOne = new Invoice('mario', 'work on the mario Website', 250);
@@ -16,6 +17,9 @@ import { HasFormatter } from "./Interfaces/HasFormatter.js";
 const form = document.querySelector('.new-item-form') as HTMLFormElement;
 // console.log(form.children);
 
+const ul = document.querySelector('ul')!;
+const list = new ListTemplate(ul);
+
 const type = document.querySelector('#type') as HTMLSelectElement;
 const tofrom = document.querySelector('#tofrom') as HTMLInputElement;
 const details = document.querySelector('#details') as HTMLInputElement;
@@ -31,4 +35,6 @@ form.addEventListener('submit', (e: Event) => {
     doc = new Payment(tofrom.value, details.value, amount.value)
     }
     console.log(doc);
+
+    list.render(doc, type.value, 'end')
 });
